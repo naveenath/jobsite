@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Delete job</h2>
+<p>Are you sure you want to delete "<strong>{{ job.title }}</strong>"?</p>
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-danger">Confirm delete</button>
+  <a class="btn btn-secondary" href="{% url 'jobs:detail' job.pk %}">Cancel</a>
+</form>
+{% endblock %}

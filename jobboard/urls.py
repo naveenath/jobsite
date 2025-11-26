@@ -2,16 +2,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.http import HttpResponse
 
-def home(request):
-    return HttpResponse("Homepage works!")
 urlpatterns = [
-    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('core.urls')),
-
-   
+    path('', include('jobs.urls')),
+    path('apply/', include('applications.urls')),
 ]
 
 if settings.DEBUG:

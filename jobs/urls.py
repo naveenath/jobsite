@@ -3,5 +3,10 @@ from . import views
 
 app_name = 'jobs'
 
-urlpatterns = []
-    
+urlpatterns = [
+    path('', views.job_list, name='list'),
+    path('jobs/<int:pk>/', views.job_detail, name='detail'),
+    path('jobs/create/', views.job_create, name='create'),
+    path('jobs/<int:pk>/edit/', views.job_update, name='update'),
+    path('jobs/<int:pk>/delete/', views.job_delete, name='delete'),
+]

@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>{{ job.title }}</h2>
+<p class="text-muted">{{ job.location }} • {{ job.get_job_type_display }}</p>
+<p>{{ job.description }}</p>
+{% if job.salary %}<p><strong>Salary:</strong> ${{ job.salary }}</p>{% endif %}
+
+<div class="mt-3">
+  {% if user.is_authenticated %}
+    <a class="btn btn-primary" href="{% url 'applications:apply' job.pk %}">Apply</a>
+    {% if user == job.employer %}
+      <a class="btn btn-outline-secondary" href="{% url 'jobs:update' job.pk %}">Edit</a>
+      <a class="btn btn-outline-danger" href="{% url 'jobs:delete' job.pk %}">Delete</a>
+    {% endif %}
+  {% else %}
+    <a class="btn btn-primary" href="{% url 'core:login' %}">Login to apply</a>
+  {% endif %}
+</div>
+{% endblock %}
